@@ -1,20 +1,22 @@
 package br.com.contacorrente;
 
+import java.text.DecimalFormat;
+
 import javax.swing.JOptionPane;
 
 public class Banco {
 
-	private int cadastro;
+	private float cadastro;
 	private float deposito;
 	private float saque;
 	private float saldo;
 	private String nome;
 
-	public int getCadastro() {
+	public float getCadastro() {
 		return cadastro;
 	}
 
-	public void setCadastro(int cadastro) {
+	public void setCadastro(float cadastro) {
 		this.cadastro = cadastro;
 	}
 
@@ -50,17 +52,25 @@ public class Banco {
 		this.nome = nome;
 	}
 
+	DecimalFormat formatado = new DecimalFormat("#,##0.00");
+
 	public void entraCadastro() {
-		nome = JOptionPane.showInputDialog(" Digite seu Nome: ", "Exemplo: Pablo Trindade");
-		cadastro = (Integer.parseInt(JOptionPane.showInputDialog("Digite o número da Conta: ", "Exemplo: 321654")));
-		JOptionPane.showMessageDialog(null,
-				" \nObrigado pela preferencia Sr(a) " + nome + " \nCadastro efetuado com sucesso.");
+
+		nome = JOptionPane.showInputDialog(" Digite seu Nome: ");
+
+		if (nome.equals("")) {
+			JOptionPane.showMessageDialog(null, " Por favor cadastre o seu nome ");
+		} else {
+			cadastro = (Integer.parseInt(JOptionPane.showInputDialog("Digite o número da Conta: ")));
+			JOptionPane.showMessageDialog(null,
+					" \nObrigado pela preferencia Sr(a) " + nome + " \nCadastro efetuado com sucesso.");
+		}
 	}
 
 	public void entraDeposito() {
 		deposito = (Float.parseFloat(JOptionPane.showInputDialog("Digite o valor a ser depositado: ")));
-		JOptionPane.showMessageDialog(null,
-				"Ola sr(a) " + nome + " seu deposito no valor de R$: " + deposito + " foi realizado com sucesso.");
+		JOptionPane.showMessageDialog(null, "Ola sr(a) " + nome + " seu deposito no valor de R$: "
+				+ formatado.format(deposito) + " foi realizado com sucesso.");
 		saldo = deposito + saldo;
 	}
 
@@ -69,13 +79,13 @@ public class Banco {
 		if (saque > saldo) {
 			JOptionPane.showMessageDialog(null, "Saldo insuficiente para esse saque.");
 		} else {
-			JOptionPane.showMessageDialog(null, "Saque no valor de R$: " + saldo + " realizado com succeso.");
+			JOptionPane.showMessageDialog(null, "Saque no valor de R$: " + formatado.format(saldo) + " realizado com succeso.");
 			saldo = saldo - saque;
 		}
 	}
 
 	public void entraSaldo() {
-		JOptionPane.showMessageDialog(null, "Seu saldo é de R$: " + saldo);
+		JOptionPane.showMessageDialog(null, "Seu saldo é de R$: " + formatado.format(saldo));
 
 	}
 }
