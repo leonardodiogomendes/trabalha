@@ -18,9 +18,22 @@ public class ObjetoBanco {
 					+"5 - Sair")));
 			
 			//usar o switch case
-			if (op == 1) {
+			switch (op) {
+			case 1:	
 				objeto.entraCadastro();
+				break;
+			case 2:
+				objeto.entraDeposito();
+				break;
+			case 3:
+			    objeto.entraSaque();
+			    break;
+			case 4:
+				objeto.entraSaldo();
+				break;
+								
 			}
+			
 			
 			//obj.entr
 			//obj.gfogfork
