@@ -51,31 +51,31 @@ public class Banco {
 	}
 
 	public void entraCadastro() {
-		nome = JOptionPane.showInputDialog("Digite seu Nome: ", "Exemplo: Pablo Trindade");
+		nome = JOptionPane.showInputDialog(" Digite seu Nome: ", "Exemplo: Pablo Trindade");
 		cadastro = (Integer.parseInt(JOptionPane.showInputDialog("Digite o número da Conta: ", "Exemplo: 321654")));
 		JOptionPane.showMessageDialog(null,
-				"\nObrigado pela preferencia Sr.(a)" + nome + "\nCadastro efetuado com sucesso.");
+				" \nObrigado pela preferencia Sr(a) " + nome + " \nCadastro efetuado com sucesso.");
 	}
 
 	public void entraDeposito() {
 		deposito = (Float.parseFloat(JOptionPane.showInputDialog("Digite o valor a ser depositado: ")));
-		JOptionPane.showMessageDialog(null, "Seu deposito foi realizado com sucesso.");
+		JOptionPane.showMessageDialog(null,
+				"Ola sr(a) " + nome + " seu deposito no valor de R$: " + deposito + " foi realizado com sucesso.");
 		saldo = deposito + saldo;
 	}
-    public void entraSaque() {
-    	saque = (Float.parseFloat(JOptionPane.showInputDialog("Informe o valor que desejado para o saque: ")));
-        if (saque > saldo) {
-        	JOptionPane.showMessageDialog(null, "Saldo insuficiente para esse saque.");
-        }else {
-        	JOptionPane.showMessageDialog(null, "Saque realizado com succeso.");
-        	saldo = saldo - saque;
-        }
-		
+
+	public void entraSaque() {
+		saque = (Float.parseFloat(JOptionPane.showInputDialog("Informe o valor que desejado para o saque: ")));
+		if (saque > saldo) {
+			JOptionPane.showMessageDialog(null, "Saldo insuficiente para esse saque.");
+		} else {
+			JOptionPane.showMessageDialog(null, "Saque no valor de R$: " + saldo + " realizado com succeso.");
+			saldo = saldo - saque;
+		}
 	}
-	// metodo entraSaque
-	// metodo entrasaldo
-    public void entraSaldo() {
-    	JOptionPane.showMessageDialog(null, "Seu saldo é: "+saldo);
-		
+
+	public void entraSaldo() {
+		JOptionPane.showMessageDialog(null, "Seu saldo é de R$: " + saldo);
+
 	}
 }
