@@ -52,40 +52,43 @@ public class Banco {
 		this.nome = nome;
 	}
 
-	DecimalFormat formatado = new DecimalFormat("#,##0.00");
+	DecimalFormat resultadoValor = new DecimalFormat("#,##0.00");
 
 	public void entraCadastro() {
-
-		nome = JOptionPane.showInputDialog(" Digite seu Nome: ");
-
-		if (nome.equals("")) {
-			JOptionPane.showMessageDialog(null, " Por favor cadastre o seu nome ");
-		} else {
-			cadastro = (Integer.parseInt(JOptionPane.showInputDialog("Digite o número da Conta: ")));
-			JOptionPane.showMessageDialog(null,
-					" \nObrigado pela preferencia Sr(a) " + nome + " \nCadastro efetuado com sucesso.");
-		}
+		nome = JOptionPane.showInputDialog("Digite seu Nome: ");
+		cadastro = (Integer.parseInt(JOptionPane.showInputDialog("Digite o número da Conta: ")));
+		JOptionPane.showMessageDialog(null,
+				"\nObrigado pela preferencia Sr(a)" + nome + "\nCadastro efetuado com sucesso.");
 	}
 
+	// metodo entraDeposito
 	public void entraDeposito() {
-		deposito = (Float.parseFloat(JOptionPane.showInputDialog("Digite o valor a ser depositado: ")));
-		JOptionPane.showMessageDialog(null, "Ola sr(a) " + nome + " seu deposito no valor de R$: "
-				+ formatado.format(deposito) + " foi realizado com sucesso.");
-		saldo = deposito + saldo;
+
+		deposito = (Float.parseFloat((JOptionPane.showInputDialog("Digite o valor a ser depositado: "))));
+		JOptionPane.showMessageDialog(null, "O depoisto de valor R$: " + resultadoValor.format(deposito)
+				+ " foi depositado na conta do sr.(a) " + nome);
+
+		saldo = saldo + deposito;
 	}
 
+	// metodo entraSaque
 	public void entraSaque() {
-		saque = (Float.parseFloat(JOptionPane.showInputDialog("Informe o valor que desejado para o saque: ")));
+		saque = (Float.parseFloat(JOptionPane.showInputDialog(" Informe o valor a ser sacado ")));
 		if (saque > saldo) {
-			JOptionPane.showMessageDialog(null, "Saldo insuficiente para esse saque.");
+			JOptionPane.showMessageDialog(null, "O saldo é insuficiente");
+
 		} else {
-			JOptionPane.showMessageDialog(null, "Saque no valor de R$: " + formatado.format(saldo) + " realizado com succeso.");
+			JOptionPane.showMessageDialog(null,	"O saque no valor de " + resultadoValor.format(saque) + " foi realizado com sucesso");
 			saldo = saldo - saque;
 		}
+
 	}
 
+	// metodo entraSaldo
 	public void entraSaldo() {
-		JOptionPane.showMessageDialog(null, "Seu saldo é de R$: " + formatado.format(saldo));
+
+		JOptionPane.showMessageDialog(null, "O valor total em sua conta é: " + resultadoValor.format(saldo));
 
 	}
-}
+	
+}	
